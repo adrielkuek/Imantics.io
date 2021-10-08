@@ -1,0 +1,49 @@
+<html>
+   <body>
+     <form method="POST" name="f">
+       <header>
+         <div class="container">
+           <h1 class="logo">Group 7 App</h1>
+         </div>
+       </header>
+       <h2>Choose one of the following options:</h2>
+
+       <strong><label for="choice_text">Text Query</label></strong>
+       <input type="radio" name="choice" id="choice_text" value="Text" onclick="TextDisplay()"/>
+
+       <strong><label for="choice_image">Image Upload</label></strong>
+       <input type="radio" name="choice" id="choice_image" value="Image" onclick="ImageDisplay()"/>
+
+     <div id="Text">
+       <h3>
+         <label for="title">Query: </label>
+         <input type="text", id=title, name="text">
+         <input type="submit">
+        </h3>
+     </div>
+
+     <div id="Image">
+       <h3>
+         <label for="img">Select image: </label>
+         <input type="file", id="img", name="img" accept="image/*">
+         <input type="submit">
+       </h3>
+     </div>
+
+     <script>
+       function TextDisplay() {
+         document.getElementById("Text").style.visibility = "visible"
+         document.getElementById("Image").style.visibility = "hidden"
+       }
+       function ImageDisplay() {
+         document.getElementById("Text").style.visibility = "hidden"
+         document.getElementById("Image").style.visibility = "visible"
+       }
+     </script>
+     </form>
+
+     {% for url in links %}
+     <img src="{{ url }}" width=300, height=300/>
+     {% endfor %}
+   </body>
+</html>

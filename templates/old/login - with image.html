@@ -1,0 +1,26 @@
+<html>
+   <body>
+     <form method="POST">
+       <header>
+         <div class="container">
+           <h1 class="logo">Group 7 App</h1>
+         </div>
+       </header>
+
+       <h2>Choose one of the following options:</h2>
+
+       <h3>
+         <label for="title">Text Input: </label>
+         <input type="text", id=title, name="text" size="33">
+         <input type="submit", value="Text Query">
+        </h3>
+     </form>
+
+     <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
+        <input type = "file" name = "file" />
+        <input type = "submit"/>
+     </form>  
+
+     <img src="{{ user_image }}" width=300, height=300/>
+   </body>
+</html>
