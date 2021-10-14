@@ -12,5 +12,5 @@ python program.py           # Run the program
 
 ### DataSet
 
-Consists of 2,000 images curated from actual users' mobile phone gallery.
+Consists of 2,000 images curated from actual users' mobile phone gallery. <br />
 Note: dataset is not uploaded due to massive size
