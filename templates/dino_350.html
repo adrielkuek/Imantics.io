@@ -1,0 +1,186 @@
+<html>
+   <body>
+     <form action="http://localhost:5000/dino_350" method="POST">
+        <header>
+          <div class="container">
+          <h1 class="logo" id="Title">Imantics.io</h1>
+          </div>
+          <div id="content">
+            <img src="static/logo.jpeg" class ="ribbon"/>
+          </div>
+        </header>
+
+        <style>
+          #content {
+              position: relative;
+          }
+          #content img {
+              position: absolute;
+              top: 0px;
+              right: 0px;
+              height: 140px;
+              width: 220px;
+          }
+        </style>
+
+        <div class="container">
+          <div class="middle">
+            <h2>Choose one of the following options:</h2>
+
+            <!-- Radio Buttons -->
+            <div>
+              <input onClick="myFunc1()" type="radio" id="textin" name="text_image" value="text_image" checked>
+              <label for="textin" style="font-size:20px;">Text</label><br>
+              <input onClick="myFunc2()" type="radio" id="imagein" name="text_image" value="by_image">
+              <label for="imagein" style="font-size:20px;">Image</label><br>
+            </div>
+
+            <!-- Text Query Fields-->
+            <h3>
+              <div id="txtinput">
+                <label for="title">Text Input: </label>
+                <input type="text", id=title, name="text" size="33">
+                <input type="submit">
+              </div>
+            </h3>
+          </div>
+        </form>
+
+          <!-- Image Query action = "http://localhost:5000/"-->
+        <h3 class="middle">
+          <div id="image_input">
+            <form action="http://localhost:5000/upload" method="POST"
+            enctype="multipart/form-data">
+              <label for="title">Image Input: </label>
+              <input type = "file" name = "File" />
+              <input type = "submit" value="Submit"/>
+            </form>
+          </div>
+        </h3>
+
+
+          <!-- JS to hide fields -->
+        <script>
+          var y = document.getElementById("image_input");
+          y.style.display = "none"
+
+          function myFunc1() {
+            var x = document.getElementById("txtinput");
+            var y = document.getElementById("image_input");
+            x.style.display = "block";
+            y.style.display = "none"
+          }
+
+          function myFunc2() {
+            var x = document.getElementById("txtinput");
+            var y = document.getElementById("image_input");
+            x.style.display = "none";
+            y.style.display = "block"
+          }
+          
+        function myAnchor(value){
+          var top = document.getElementById(value).offsetTop;
+          window.scrollTo(0, top);
+          //document.getElementById(value).scrollIntoView();
+        }
+
+        </script>
+        
+        <!-- Drop down for clusters-->
+        <div class="left">
+          <h2>Choose your Model below</h2>
+          <h3>
+            <form>
+              <select name="list" id="list" accesskey="target" style="font-size:20px;">
+                  <option value='none' selected>Choose a cluster</option>
+                  <option value="http://localhost:5000/dino_200">Dino 200 Clusters</option>
+                  <option value="http://localhost:5000/dino_250">Dino 250 Clusters</option>
+                  <option value="http://localhost:5000/dino_300">Dino 300 Clusters</option>
+                  <option value="http://localhost:5000/dino_350">Dino 350 Clusters</option>
+                  <option value="http://localhost:5000/dino_400">Dino 400 Clusters</option>
+                  <option value="http://localhost:5000/dino_450">Dino 450 Clusters</option>
+                  <option value="http://localhost:5000/scan_200">Scan 200 Clusters</option>
+              </select>
+              <input type=button style="font-size:20px;" value="Go" onclick="goToNewPage()" />
+            </form>
+          </h3>
+        </div>
+
+        <script type="text/javascript">
+          function goToNewPage()
+          {
+              var url = document.getElementById('list').value;
+              if(url != 'none') {
+                  window.location = url;
+              }
+          }
+        </script>
+
+        <div class="right">
+          <h2>Choose the Cluster to view</h2>
+          <form>
+            <select name="list" id="list" style="font-size:20px;" accesskey="target" onchange="myAnchor(this.value)">
+                <option value='none' selected>Choose a cluster</option>
+                {% for key in dino_350 %}
+                <option value= "{{ key }}"> {{ key }}</option>
+                {% endfor %}
+            </select>
+          </form>  
+        </div>    
+    </div>
+
+    <style>
+    div.container {
+      display: grid;
+      grid-template-columns: 250px 100px auto;
+      grid-template-rows: auto;
+      }
+      
+    div.left {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      }
+      
+    div.middle {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      }
+
+    div.right {
+      grid-column-start: 4;
+      grid-column-end: 8;
+      grid-row-start: 1;
+      grid-row-end: 5;
+      }
+
+    div.header {
+      background-color:mediumturquoise;
+      height: 50px;
+    }
+    </style>
+
+    <div class= "header">
+    <h1 style="text-align:center">DIstillation with NO labels (DINO) -- 350 Clusters</h1></div>
+    <hr style="height:4px;border:none;color:#333;background-color:#333;">
+    <div id="dino_350">
+      {% for key in dino_350 %}
+        <h2 style="text-align:left" id="{{ key }}">{{ key }}
+          <span style="float:right;"><a href="#Title">Return to Top</a>
+          </span></h2>
+        {% for value in dino_350[key] %}
+          {% for url in links %}
+            {% if value in url %} 
+              <img src="{{ url }}" width=200, height=200/>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+        <hr style="height:4px;border:none;color:#333;background-color:#333;">
+      {% endfor %}
+    </div>
+
+   </body>
+</html>

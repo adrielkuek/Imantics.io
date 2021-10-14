@@ -1,0 +1,48 @@
+<html>
+   <body>
+     <form action="http://localhost:5000/" method="POST">
+        <header>
+          <div id>
+            <img src="static/logo.jpeg" class ="center"/>
+          </div>
+        </header>
+
+        <div>
+          <h1 style="text-align:center">Choose your Model below</h1>
+          <h2 style="text-align:center">
+            <form>
+              <select name="list" id="list" accesskey="target" style="font-size:25px;">
+                  <option value='none' selected>Choose a cluster</option>
+                  <option value="http://localhost:5000/dino_200">Dino 200 Clusters</option>
+                  <option value="http://localhost:5000/dino_250">Dino 250 Clusters</option>
+                  <option value="http://localhost:5000/dino_300">Dino 300 Clusters</option>
+                  <option value="http://localhost:5000/dino_350">Dino 350 Clusters</option>
+                  <option value="http://localhost:5000/dino_400">Dino 400 Clusters</option>
+                  <option value="http://localhost:5000/dino_450">Dino 450 Clusters</option>
+                  <option value="http://localhost:5000/scan_200">Scan 200 Clusters</option>
+              </select>
+              <input type=button style="font-size:25px;" value="Go" onclick="goToNewPage()" />
+            </form>
+          </h2>
+        </div>
+        
+        <script type="text/javascript">
+          function goToNewPage()
+          {
+              var url = document.getElementById('list').value;
+              if(url != 'none') {
+                  window.location = url;
+              }
+          }
+        </script>
+
+        <style>
+          .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+          }
+        </style>
+   </body>
+</html>
