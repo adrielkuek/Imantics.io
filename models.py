@@ -7,6 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import os, pickle, pprint
 import numpy as np
 import pandas as pd
+import statistics
 
     ################ PCA, KMeans, KNN ##################
     ##knn_neighbors = 20
@@ -29,6 +30,24 @@ def rename_clusters(data_groups):
             data_filenames["Cluster_" + str(key)] = data_dict[key]
 
     return data_filenames
+
+
+def stats(clustersize, data_filenames):
+    dict_length = {}
+    for key,value in data_filenames.items():
+        dict_length[key] = len(value)
+    imgcount_nonzero = len(data_filenames) 
+    imgcount_zero = clustersize - imgcount_nonzero
+    max_value = max(dict_length.values())
+    min_value = min(dict_length.values())
+    mean_value = round(statistics.mean(dict_length.values()),2)
+##    print(imgcount_zero)
+##    print(imgcount_nonzero)
+##    print(max_v)
+##    print(min_v)
+##    print(mean_v)
+
+    return imgcount_zero, imgcount_nonzero, max_value, min_value, mean_value
 
 def Dino_250():
 
@@ -99,53 +118,7 @@ def Scan_200():
     data_filenames = rename_clusters(data_groups)
 
     return data_filenames
-
-##    ################# Train Test Split #################
-##    Y = kmeans.labels_.tolist()
-##    X_train, X_test, y_train, y_test = train_test_split(DTtensors, Y, test_size=0.6, random_state = 42)
-##    knn = KNeighborsClassifier(knn_neighbors)
-##    knn.fit(X_train, y_train)
-##    pred =  knn.predict(X_test)
-##
-##    ################### Combine with filenames ##########
-##    filename =[]
-##    num = 1
-##    for file in data_filenames:
-##        filename.append([num,file])
-##        num += 1
-##    filename = pd.DataFrame(filename, columns=["index","filename"])
-##
-##    prediction = pred.tolist()
-##    prediction_data = X_test
-##    prediction_data["label"] = prediction
-##    prediction_data["index"] = prediction_data.index
-##
-##    inner_join = pd.merge(prediction_data, filename, on ='index', how ='inner')
-##
-##    ################### Dictionary of cluster & filenames ####
-##
-##    groups = {}
-##    renamed_groups = {}
-##    for cluster, file in zip(inner_join["label"],inner_join["filename"]):
-##    ##    if cluster < 10:
-##    ##        cluster_name = "Group_0" + str(cluster)
-##    ##    else:
-##    ##        cluster_name = "Group_0" + str(cluster)
-##        
-##        if cluster not in groups.keys():
-##            groups[cluster] = []
-##            groups[cluster].append(file)
-##        else:
-##            groups[cluster].append(file)
-##    groupings = dict(sorted(groups.items()))
-##
-##    for key in groupings.keys():
-##        if int(key) < 10:
-##            renamed_groups["Group_0" + str(key)] = groupings[key]
-##        else:
-##            renamed_groups["Group_" + str(key)] = groupings[key]
-
+   
     
-
 
 
