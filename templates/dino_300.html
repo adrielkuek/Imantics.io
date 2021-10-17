@@ -22,6 +22,7 @@
               width: 220px;
           }
         </style>
+      </form>
 
         <div class="container">
           <div class="middle">
@@ -38,25 +39,40 @@
             <!-- Text Query Fields-->
             <h3>
               <div id="txtinput">
+                <form action="http://localhost:5000/text" method="POST">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                  <option value='none' selected>Choose a cluster size</option>
+                  {% for number in listofN %}                
+                    <option value="{{ number }}"> {{ number }}</option>
+                  {% endfor %}
+                </select><p>
                 <label for="title">Text Input: </label>
                 <input type="text", id=title, name="text" size="33">
                 <input type="submit">
+                <p style="font-style:italic"><small>(Image Retrieval Using CLIP)</small></p>
+                </form>
               </div>
             </h3>
           </div>
-        </form>
 
-          <!-- Image Query action = "http://localhost:5000/"-->
-        <h3 class="middle">
-          <div id="image_input">
-            <form action="http://localhost:5000/upload" method="POST"
-            enctype="multipart/form-data">
-              <label for="title">Image Input: </label>
-              <input type = "file" name = "File" />
-              <input type = "submit" value="Submit"/>
-            </form>
-          </div>
-        </h3>
+          <!-- Image Query action-->
+          <h3 class="middle">
+            <div id="image_input">
+              <form action="http://localhost:5000/image" method="POST" enctype="multipart/form-data">
+              <h3><u>Please select the number of images to return.</u></h3>
+              <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                <option value='none' selected>Choose a cluster size</option>
+                {% for number in listofN %}                
+                  <option value="{{ number }}"> {{ number }}</option>
+                {% endfor %}
+              </select><p>
+                <label for="title">Image Input: </label>
+                <input type = "file" name = "File" />
+                <input type = "submit" value="Submit"/>
+              </form>
+            </div>
+          </h3>
 
 
           <!-- JS to hide fields -->
@@ -161,10 +177,48 @@
       background-color:mediumturquoise;
       height: 50px;
     }
+
+    table, td, th {
+      padding: 10px;
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th {
+      width: 100%;
+      font-size: 25px;
+
+    }
     </style>
 
     <div class= "header">
     <h1 style="text-align:center">DIstillation with NO labels (DINO) -- 300 Clusters</h1></div>
+
+    <table style="width:100%">
+      <tr>
+        <th colspan="7">Cluster Statistics</th>
+      </tr>
+      <tr>
+        <td>No. of clusters with images</td>
+        <td>No. of clusters with 0 images</td>
+        <td>Maximum images in cluster</td>
+        <td>Minimum images in cluster</td>
+        <td>Mean images in cluster</td>
+        <td>Normalized Mutual Information (NMI)</td>
+        <td>Rand Index</td>
+      </tr>
+      <tr>
+        <td>{{ imgcount_nonzero }}</td>
+        <td>{{ imgcount_zero }}</td>
+        <td>{{ max_value }}</td>
+        <td>{{ min_value }}</td>
+        <td>{{ mean_value }}</td>
+        <td> N.A. </td>
+        <td> N.A. </td>
+      </tr>
+    </table>
+
     <hr style="height:4px;border:none;color:#333;background-color:#333;">
     <div id="dino_300">
       {% for key in dino_300 %}
