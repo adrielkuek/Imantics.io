@@ -8,6 +8,9 @@ Go to __Command Prompt__.
 cd Project                  # Change directory to Project Folder Directory
 virtual\Scripts\activate    # Activate the virtual environment
 python program.py           # Run the program
+
+Go to Chrome Browser and key in the URL: http://localhost:5000/
+Lastly, enjoy the tour!
 ```
 
 ### DataSet
