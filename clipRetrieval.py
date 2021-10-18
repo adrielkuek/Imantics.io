@@ -154,6 +154,7 @@ class CLIP(object):
     def __init__(self, model_dir, tensor_file, img_filename_pickle):
         
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
+        # self.device = "cpu"
         
         # Load CLIP base model - Using ViT-B/32 model (Offline model)
         print(f'LOADING CLIP PRETRAINED . . .')
