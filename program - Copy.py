@@ -11,20 +11,20 @@ app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = os.path.join("static", "images")
 
 ######## Initialization of CLIP Retrieval Functions ########################
-##clipmodel_dir = os.getcwd() + "/models/ViT-B-32.pt"
-##clipinput_filename_pickle =  os.getcwd() + "/feature_tensors/clip_retrieval/image_filenames_OurDataset.pkl"
-##clipdataset_tensor = os.getcwd()+ "/feature_tensors/clip_retrieval/image_embeddings_OurDataset.pt"
+clipmodel_dir = os.getcwd() + "/models/ViT-B-32.pt"
+clipinput_filename_pickle =  os.getcwd() + "/feature_tensors/clip_retrieval/image_filenames_OurDataset.pkl"
+clipdataset_tensor = os.getcwd()+ "/feature_tensors/clip_retrieval/image_embeddings_OurDataset.pt"
 
-##dinomodel_dir = os.getcwd() + "/models/dino_deitsmall8_pretrain.pth"
-##dinoinput_filename_pickle = os.getcwd() + "/feature_tensors/dino_retrieval/Ourdataset_loader.pth"
-##dinodataset_tensor = os.getcwd() + "/feature_tensors/dino_retrieval/Ourdataset_features.pth"
+dinomodel_dir = os.getcwd() + "/models/dino_deitsmall8_pretrain.pth"
+dinoinput_filename_pickle = os.getcwd() + "/feature_tensors/dino_retrieval/Ourdataset_loader.pth"
+dinodataset_tensor = os.getcwd() + "/feature_tensors/dino_retrieval/Ourdataset_features.pth"
 
 kNNstep = 5
 kNNmax = 50
 kNNstart = 5
 
-#clip = CLIP(clipmodel_dir, clipdataset_tensor, clipinput_filename_pickle)
-##dino = DINO(dinomodel_dir, dinoinput_filename_pickle, dinodataset_tensor)
+clip = CLIP(clipmodel_dir, clipdataset_tensor, clipinput_filename_pickle)
+dino = DINO(dinomodel_dir, dinoinput_filename_pickle, dinodataset_tensor)
 
 ######## Defined functions ##################################################
 def listofimages():
@@ -54,6 +54,7 @@ def text():
 @app.route('/image', methods = ['POST','GET'])
 def upload():
     imageResults_list = []
+    filelist = listofimages()
     
     if request.method == 'POST':
         imagelist = glob.glob(os.path.join(os.getcwd(),"static", "images","upload","*"))
@@ -64,12 +65,10 @@ def upload():
         filepath = os.path.join("static", "images","upload",secure_filename(f.filename))
         f.save(filepath)
 
-    queryImage = Image.open(filepath)
     NNeighbor = int(request.form["clustersize"])
-
-    imageResults_list = dino.kNN_retrieval(queryImage, NNeighbor)
+    imageResults_list = dino.kNN_retrieval(filepath, NNeighbor)
         
-    return render_template('image.html',imageResults_list=imageResults_list, filepath=filepath)      
+    return render_template('image.html',imageResults_list=imageResults_list, links=filelist, filepath=filepath)      
 
 @app.route('/dino_50')
 def dino_50():
@@ -101,7 +100,6 @@ def dino_150():
     imgcount_zero, imgcount_nonzero, max_value, min_value, mean_value = stats(150,dino_150cluster)
 
     return render_template('dino_150.html', links=filelist, dino_150=dino_150cluster, listofN=listofN, imgcount_zero=imgcount_zero, imgcount_nonzero=imgcount_nonzero, max_value=max_value, min_value=min_value, mean_value=mean_value)
-
 
 @app.route('/dino_200')
 def dino_200():
@@ -284,16 +282,6 @@ def kmplus_dino_450():
 
     return render_template('kmplus_dino_450.html', links=filelist, kmplus_dino_450=kmplus_dino_450cluster, listofN=listofN, imgcount_zero=imgcount_zero, imgcount_nonzero=imgcount_nonzero, max_value=max_value, min_value=min_value, mean_value=mean_value)
 
-@app.route('/kmplus_dino_500')
-def kmplus_dino_500():
-    
-    filelist = listofimages()
-    kmplus_dino_500cluster = Kmplus_Dino_500()
-    listofN = [str(int) for int in list(range(kNNstart,kNNmax+1,kNNstep))]
-    imgcount_zero, imgcount_nonzero, max_value, min_value, mean_value = stats(500,kmplus_dino_500cluster)
-
-    return render_template('kmplus_dino_500.html', links=filelist, kmplus_dino_500=kmplus_dino_500cluster, listofN=listofN, imgcount_zero=imgcount_zero, imgcount_nonzero=imgcount_nonzero, max_value=max_value, min_value=min_value, mean_value=mean_value)
-
 @app.route('/agglo_dino_11')
 def agglo_dino_11():
     
@@ -433,7 +421,6 @@ def agglo_dino_ed20():
     imgcount_zero, imgcount_nonzero, max_value, min_value, mean_value = stats(len(agglo_dino_ed20c),agglo_dino_ed20c)
 
     return render_template('agglo_dino_ed20.html', links=filelist, agglo_dino_ed20c=agglo_dino_ed20c, listofN=listofN, imgcount_zero=imgcount_zero, imgcount_nonzero=imgcount_nonzero, max_value=max_value, min_value=min_value, mean_value=mean_value)
-
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)

@@ -22,8 +22,8 @@ from torchvision import transforms as pth_transforms
 from torchvision import models as torchvision_models
 from custom_dataset2 import CustomDataSet2
 
-import utils
-import vision_transformer as vits
+from util import utils
+from util import vision_transformer as vits
 
 class DINO(object):
     def __init__(self, model_dir, data_loader, dataset_features):

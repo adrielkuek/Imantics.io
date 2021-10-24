@@ -79,7 +79,7 @@ def whitespace_clean(text):
 
 
 class SimpleTokenizer(object):
-    def __init__(self, bpe_path: str = "bpe_simple_vocab_16e6.txt.gz"):
+    def __init__(self, bpe_path: str = "clip/bpe_simple_vocab_16e6.txt.gz"):
         self.byte_encoder = bytes_to_unicode()
         self.byte_decoder = {v: k for k, v in self.byte_encoder.items()}
         merges = gzip.open(bpe_path).read().decode("utf-8").split('\n')
@@ -154,7 +154,6 @@ class CLIP(object):
     def __init__(self, model_dir, tensor_file, img_filename_pickle):
         
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
-        # self.device = "cpu"
         
         # Load CLIP base model - Using ViT-B/32 model (Offline model)
         print(f'LOADING CLIP PRETRAINED . . .')
@@ -244,34 +243,34 @@ class CLIP(object):
         return image_results_list
 
 # For Testing of class object
-def main():
-
-    model_dir = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/ViT-B-32.pt'
-    input_filename_pickle = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/OurDataset_Tensors/image_filenames_OurDataset.pkl'
-    dataset_tensor = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/OurDataset_Tensors/image_embeddings_OurDataset.pt'
-    
-    imageResults_list = []
-
-    clip = CLIP(model_dir, dataset_tensor, input_filename_pickle)
-
-    # Test with sample image
-    # Retrieve Test Image Query
-    imgSample_filepath = '/media/user/New Volume/TINKERMAN/OurDataset/PRS_CombinedDataset/train/14311265_10154545979703896_614300630827326582_o.jpg'
-    imageSample = Image.open(imgSample_filepath)
-
-    # # Display Here
-    # plt.figure(figsize=(15, 15))
-    # plt.imshow(imageSample)
-
-    imageResults_list = clip.kNN_retrieval(10, imageSample, is_text=False)
-    print(imageResults_list)
-
-    # Text with sample Text query
-    sampleText = 'cats'
-    imageResults_list = clip.kNN_retrieval(10, sampleText, is_text=True)
-    print(imageResults_list)
-
-if __name__ == "__main__":
-    main()
+##def main():
+##
+##    model_dir = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/ViT-B-32.pt'
+##    input_filename_pickle = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/OurDataset_Tensors/image_filenames_OurDataset.pkl'
+##    dataset_tensor = '/home/user/Adriel/MTech-IS/GradCert_PatternRecognition/PRS_PractiseModule/Imantics.io/OurDataset_Tensors/image_embeddings_OurDataset.pt'
+##    
+##    imageResults_list = []
+##
+##    clip = CLIP(model_dir, dataset_tensor, input_filename_pickle)
+##
+##    # Test with sample image
+##    # Retrieve Test Image Query
+##    imgSample_filepath = '/media/user/New Volume/TINKERMAN/OurDataset/PRS_CombinedDataset/train/14311265_10154545979703896_614300630827326582_o.jpg'
+##    imageSample = Image.open(imgSample_filepath)
+##
+##    # # Display Here
+##    # plt.figure(figsize=(15, 15))
+##    # plt.imshow(imageSample)
+##
+##    imageResults_list = clip.kNN_retrieval(10, imageSample, is_text=False)
+##    print(imageResults_list)
+##
+##    # Text with sample Text query
+##    sampleText = 'cats'
+##    imageResults_list = clip.kNN_retrieval(10, sampleText, is_text=True)
+##    print(imageResults_list)
+##
+##if __name__ == "__main__":
+##    main()
 
 
