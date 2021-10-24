@@ -1,6 +1,7 @@
 <html>
+  <!--<link rel="shortcut icon" href="data:" />-->
    <body>
-     <form action="/dino_250" method="POST">
+     <form action="/optics_dino_m5" method="POST">
         <header>
           <!--<div class="container">
           <h1 class="logo" id="Title">Imantics.io</h1>
@@ -40,8 +41,8 @@
             <h3>
               <div id="txtinput">
                 <form action="/text" method="POST">
-                  <h3><u>Please select the number of images to return.</u></h3>
-                  <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
                   <option value='none' selected>Choose a cluster size</option>
                   {% for number in listofN %}                
                     <option value="{{ number }}"> {{ number }}</option>
@@ -74,7 +75,6 @@
               </div>
             </h3>
           </div>
-
 
           <!-- JS to hide fields -->
         <script>
@@ -114,6 +114,7 @@
                   <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
                   <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
                   <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                  <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
                   <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
                   <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
                   <option value="/dino_400">[KMeans] Dino 400 Clusters</option>
@@ -144,7 +145,6 @@
                   <option value="/dbscan_dino_eps9_m2">[DBSCAN] Dino EPS 9 Minimum Sample 2</option>
                   <option value="/optics_dino_m3">[Optics] Dino Optics Minimum Sample 3</option>
                   <option value="/optics_dino_m4">[Optics] Dino Optics Minimum Sample 4</option>
-                  <option value="/optics_dino_m5">[Optics] Dino Optics Minimum Sample 5</option>
               </select>
               <input type=button style="font-size:20px;" value="Go" onclick="goToNewPage()" />
             </form>
@@ -166,7 +166,7 @@
           <form>
             <select name="list" id="list" style="font-size:20px;" accesskey="target" onchange="myAnchor(this.value)">
                 <option value='none' selected>Choose a cluster</option>
-                {% for key in dino_250 %}
+                {% for key in optics_dino_m5c %}
                 <option value= "{{ key }}"> {{ key }}</option>
                 {% endfor %}
             </select>
@@ -175,37 +175,38 @@
     </div>
 
     <style>
-      div.container {
-        display: grid;
-        grid-template-columns: 400px 100px auto;
-        grid-template-rows: auto;
-        }
-        
-      div.left {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        }
-        
-      div.middle {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 1;
-        }
-  
-      div.right {
-        grid-column-start: 6;
-        grid-column-end: 9;
-        grid-row-start: 1;
-        grid-row-end: 5;
-        }
-  
-      div.header {
-        background-color:mediumturquoise;
-        height: 50px;
+    div.container {
+      display: grid;
+      grid-template-columns: 400px 100px auto;
+      grid-template-rows: auto;
       }
+      
+    div.left {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      }
+      
+    div.middle {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      }
+
+    div.right {
+      grid-column-start: 6;
+      grid-column-end: 9;
+      grid-row-start: 1;
+      grid-row-end: 5;
+      }
+
+    div.header {
+      background-color:burlywood;
+      height: 50px;
+    }
+
     table, td, th {
       padding: 10px;
       border: 1px solid black;
@@ -218,10 +219,10 @@
       font-size: 25px;
 
     }
-    </style>
 
+    </style>
     <div class= "header">
-    <h1 style="text-align:center">[KMeans] DIstillation with NO labels (DINO) -- 250 Clusters</h1></div>
+      <h1 style="text-align:center">[Optics] DIstillation with NO labels (DINO) -- Minimum Samples 5</h1></div>
 
     <table style="width:100%">
       <tr>
@@ -248,12 +249,12 @@
     </table>
 
     <hr style="height:4px;border:none;color:#333;background-color:#333;">
-    <div id="dino_250">
-      {% for key in dino_250 %}
+    <div id="optics_dino_m5c">
+      {% for key in optics_dino_m5c %}
         <h2 style="text-align:left" id="{{ key }}">{{ key }}
           <span style="float:right;"><a href="#content">Return to Top</a>
           </span></h2>
-        {% for value in dino_250[key] %}
+        {% for value in optics_dino_m5c[key] %}
           {% for url in links %}
             {% if value in url %} 
               <img src="{{ url }}" width=200, height=200/>

@@ -1,6 +1,7 @@
 <html>
+  <!--<link rel="shortcut icon" href="data:" />-->
    <body>
-     <form action="/dino_250" method="POST">
+     <form action="/agglo_dino_18" method="POST">
         <header>
           <!--<div class="container">
           <h1 class="logo" id="Title">Imantics.io</h1>
@@ -40,8 +41,8 @@
             <h3>
               <div id="txtinput">
                 <form action="/text" method="POST">
-                  <h3><u>Please select the number of images to return.</u></h3>
-                  <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
                   <option value='none' selected>Choose a cluster size</option>
                   {% for number in listofN %}                
                     <option value="{{ number }}"> {{ number }}</option>
@@ -74,7 +75,6 @@
               </div>
             </h3>
           </div>
-
 
           <!-- JS to hide fields -->
         <script>
@@ -114,6 +114,7 @@
                   <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
                   <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
                   <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                  <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
                   <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
                   <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
                   <option value="/dino_400">[KMeans] Dino 400 Clusters</option>
@@ -133,7 +134,6 @@
                   <option value="/kmplus_dino_500">[KMeans++] Dino 500 Clusters</option>
                   <option value="/agglo_dino_11">[Agglo] Dino 1.1 Distance</option>
                   <option value="/agglo_dino_15">[Agglo] Dino 1.5 Distance</option>
-                  <option value="/agglo_dino_18">[Agglo] Dino 1.8 Distance</option>
                   <option value="/agglo_dino_25">[Agglo] Dino 2.5 Distance</option>
                   <option value="/agglo_dino_30">[Agglo] Dino 3.0 Distance</option>
                   <option value="/agglo_dino_ed12">[Agglo] Dino 1.2 Euclidean Distance</option>
@@ -166,7 +166,7 @@
           <form>
             <select name="list" id="list" style="font-size:20px;" accesskey="target" onchange="myAnchor(this.value)">
                 <option value='none' selected>Choose a cluster</option>
-                {% for key in dino_250 %}
+                {% for key in agglo_dino_18d %}
                 <option value= "{{ key }}"> {{ key }}</option>
                 {% endfor %}
             </select>
@@ -175,37 +175,38 @@
     </div>
 
     <style>
-      div.container {
-        display: grid;
-        grid-template-columns: 400px 100px auto;
-        grid-template-rows: auto;
-        }
-        
-      div.left {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        }
-        
-      div.middle {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 1;
-        }
-  
-      div.right {
-        grid-column-start: 6;
-        grid-column-end: 9;
-        grid-row-start: 1;
-        grid-row-end: 5;
-        }
-  
-      div.header {
-        background-color:mediumturquoise;
-        height: 50px;
+    div.container {
+      display: grid;
+      grid-template-columns: 400px 100px auto;
+      grid-template-rows: auto;
       }
+      
+    div.left {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      }
+      
+    div.middle {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      }
+
+    div.right {
+      grid-column-start: 6;
+      grid-column-end: 9;
+      grid-row-start: 1;
+      grid-row-end: 5;
+      }
+
+    div.header {
+      background-color:darkkhaki;
+      height: 50px;
+    }
+
     table, td, th {
       padding: 10px;
       border: 1px solid black;
@@ -218,10 +219,10 @@
       font-size: 25px;
 
     }
-    </style>
 
+    </style>
     <div class= "header">
-    <h1 style="text-align:center">[KMeans] DIstillation with NO labels (DINO) -- 250 Clusters</h1></div>
+      <h1 style="text-align:center">[Agglo] DIstillation with NO labels (DINO) -- 1.8 Distance</h1></div>
 
     <table style="width:100%">
       <tr>
@@ -248,12 +249,12 @@
     </table>
 
     <hr style="height:4px;border:none;color:#333;background-color:#333;">
-    <div id="dino_250">
-      {% for key in dino_250 %}
+    <div id="agglo_dino_18d">
+      {% for key in agglo_dino_18d %}
         <h2 style="text-align:left" id="{{ key }}">{{ key }}
           <span style="float:right;"><a href="#content">Return to Top</a>
           </span></h2>
-        {% for value in dino_250[key] %}
+        {% for value in agglo_dino_18d[key] %}
           {% for url in links %}
             {% if value in url %} 
               <img src="{{ url }}" width=200, height=200/>

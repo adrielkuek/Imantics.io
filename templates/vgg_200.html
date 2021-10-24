@@ -1,27 +1,27 @@
 <html>
    <body>
-     <form action="/dino_250" method="POST">
-        <header>
-          <!--<div class="container">
-          <h1 class="logo" id="Title">Imantics.io</h1>
-          </div> -->
-          <div id="content">
-            <img src="static/logo.jpeg" class ="ribbon"/>
-          </div>
-        </header>
+     <form action="/vgg_200" method="POST">
+      <header>
+        <!--<div class="container">
+         <h1 class="logo" id="Title">Imantics.io</h1>
+         </div> -->
+         <div id="content">
+           <img src="static/logo.jpeg" class ="ribbon"/>
+         </div>
+       </header>
 
-        <style>
-          #content {
-              position: relative;
-          }
-          #content img {
-              position: left;
-              top: 0px;
-              right: 0px;
-              height: 140px;
-              width: 220px;
-          }
-        </style>
+       <style>
+         #content {
+             position: relative;
+         }
+         #content img {
+             position: left;
+             top: 0px;
+             right: 0px;
+             height: 140px;
+             width: 220px;
+         }
+       </style>
       </form>
 
         <div class="container">
@@ -40,8 +40,8 @@
             <h3>
               <div id="txtinput">
                 <form action="/text" method="POST">
-                  <h3><u>Please select the number of images to return.</u></h3>
-                  <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
                   <option value='none' selected>Choose a cluster size</option>
                   {% for number in listofN %}                
                     <option value="{{ number }}"> {{ number }}</option>
@@ -55,25 +55,25 @@
               </div>
             </h3>
 
-          <!-- Image Query action-->
-            <h3>
-              <div id="image_input">
-                <form action="/image" method="POST" enctype="multipart/form-data">
-                <h3><u>Please select the number of images to return.</u></h3>
-                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
-                  <option value='none' selected>Choose a cluster size</option>
-                  {% for number in listofN %}                
-                    <option value="{{ number }}"> {{ number }}</option>
-                  {% endfor %}
-                </select><p>
-                  <label for="title">Image Input: </label>
-                  <input type = "file" name = "File" />
-                  <input type = "submit" value="Submit"/>
-                  <p style="font-style:italic"><small>(Image Retrieval Using DINO)</small></p>
-                </form>
-              </div>
-            </h3>
-          </div>
+            <!-- Image Query action-->
+              <h3>
+                <div id="image_input">
+                  <form action="/image" method="POST" enctype="multipart/form-data">
+                  <h3><u>Please select the number of images to return.</u></h3>
+                  <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                    <option value='none' selected>Choose a cluster size</option>
+                    {% for number in listofN %}                
+                      <option value="{{ number }}"> {{ number }}</option>
+                    {% endfor %}
+                  </select><p>
+                    <label for="title">Image Input: </label>
+                    <input type = "file" name = "File" />
+                    <input type = "submit" value="Submit"/>
+                    <p style="font-style:italic"><small>(Image Retrieval Using DINO)</small></p>
+                  </form>
+                </div>
+              </h3>
+            </div>
 
 
           <!-- JS to hide fields -->
@@ -108,19 +108,19 @@
           <h2>Choose your Model below</h2>
           <h3>
             <form>
-              <select name="list" id="list" accesskey="target" style="font-size:20px;">
+              <select name="list" id="list" style="font-size:20px;" accesskey="target">
                   <option value='none' selected>Choose a cluster</option>
                   <option value="/dino_50">[KMeans] Dino 50 Clusters</option>
                   <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
                   <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
                   <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                  <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
                   <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
                   <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
                   <option value="/dino_400">[KMeans] Dino 400 Clusters</option>
                   <option value="/dino_450">[KMeans] Dino 450 Clusters</option>
                   <option value="/dino_500">[KMeans] Dino 500 Clusters</option>
                   <option value="/scan_200">[KMeans] Scan 200 Clusters</option>
-                  <option value="/vgg_200">[KMeans] VGG 200 Clusters</option>
                   <option value="/kmplus_dino_50">[KMeans++] Dino 50 Clusters</option>
                   <option value="/kmplus_dino_100">[KMeans++] Dino 100 Clusters</option>
                   <option value="/kmplus_dino_150">[KMeans++] Dino 150 Clusters</option>
@@ -166,7 +166,7 @@
           <form>
             <select name="list" id="list" style="font-size:20px;" accesskey="target" onchange="myAnchor(this.value)">
                 <option value='none' selected>Choose a cluster</option>
-                {% for key in dino_250 %}
+                {% for key in dino_450 %}
                 <option value= "{{ key }}"> {{ key }}</option>
                 {% endfor %}
             </select>
@@ -201,11 +201,12 @@
         grid-row-start: 1;
         grid-row-end: 5;
         }
-  
-      div.header {
-        background-color:mediumturquoise;
-        height: 50px;
-      }
+
+    div.header {
+      background-color:greenyellow;
+      height: 50px;
+    }
+
     table, td, th {
       padding: 10px;
       border: 1px solid black;
@@ -221,7 +222,7 @@
     </style>
 
     <div class= "header">
-    <h1 style="text-align:center">[KMeans] DIstillation with NO labels (DINO) -- 250 Clusters</h1></div>
+    <h1 style="text-align:center">[KMeans] Visual Geometry Group-16 (VGG-16)-- 200 Clusters</h1></div>
 
     <table style="width:100%">
       <tr>
@@ -248,12 +249,12 @@
     </table>
 
     <hr style="height:4px;border:none;color:#333;background-color:#333;">
-    <div id="dino_250">
-      {% for key in dino_250 %}
+    <div id="vgg_200">
+      {% for key in vgg_200 %}
         <h2 style="text-align:left" id="{{ key }}">{{ key }}
           <span style="float:right;"><a href="#content">Return to Top</a>
           </span></h2>
-        {% for value in dino_250[key] %}
+        {% for value in vgg_200[key] %}
           {% for url in links %}
             {% if value in url %} 
               <img src="{{ url }}" width=200, height=200/>

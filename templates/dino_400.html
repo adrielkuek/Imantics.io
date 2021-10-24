@@ -1,10 +1,10 @@
 <html>
    <body>
-     <form action="http://localhost:5000/dino_400" method="POST">
+     <form action="/dino_400" method="POST">
         <header>
-          <div class="container">
+         <!--<div class="container">
           <h1 class="logo" id="Title">Imantics.io</h1>
-          </div>
+          </div> -->
           <div id="content">
             <img src="static/logo.jpeg" class ="ribbon"/>
           </div>
@@ -15,7 +15,7 @@
               position: relative;
           }
           #content img {
-              position: absolute;
+              position: left;
               top: 0px;
               right: 0px;
               height: 140px;
@@ -39,7 +39,7 @@
             <!-- Text Query Fields-->
             <h3>
               <div id="txtinput">
-                <form action="http://localhost:5000/text" method="POST">
+                <form action="/text" method="POST">
                   <h3><u>Please select the number of images to return.</u></h3>
                 <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
                   <option value='none' selected>Choose a cluster size</option>
@@ -54,25 +54,26 @@
                 </form>
               </div>
             </h3>
-          </div>
 
-          <!-- Image Query action-->
-          <h3 class="middle">
-            <div id="image_input">
-              <form action="http://localhost:5000/image" method="POST" enctype="multipart/form-data">
-              <h3><u>Please select the number of images to return.</u></h3>
-              <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
-                <option value='none' selected>Choose a cluster size</option>
-                {% for number in listofN %}                
-                  <option value="{{ number }}"> {{ number }}</option>
-                {% endfor %}
-              </select><p>
-                <label for="title">Image Input: </label>
-                <input type = "file" name = "File" />
-                <input type = "submit" value="Submit"/>
-              </form>
+            <!-- Image Query action-->
+              <h3>
+                <div id="image_input">
+                  <form action="/image" method="POST" enctype="multipart/form-data">
+                  <h3><u>Please select the number of images to return.</u></h3>
+                  <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                    <option value='none' selected>Choose a cluster size</option>
+                    {% for number in listofN %}                
+                      <option value="{{ number }}"> {{ number }}</option>
+                    {% endfor %}
+                  </select><p>
+                    <label for="title">Image Input: </label>
+                    <input type = "file" name = "File" />
+                    <input type = "submit" value="Submit"/>
+                    <p style="font-style:italic"><small>(Image Retrieval Using DINO)</small></p>
+                  </form>
+                </div>
+              </h3>
             </div>
-          </h3>
 
 
           <!-- JS to hide fields -->
@@ -109,13 +110,41 @@
             <form>
               <select name="list" id="list" style="font-size:20px;" accesskey="target">
                   <option value='none' selected>Choose a cluster</option>
-                  <option value="http://localhost:5000/dino_200">Dino 200 Clusters</option>
-                  <option value="http://localhost:5000/dino_250">Dino 250 Clusters</option>
-                  <option value="http://localhost:5000/dino_300">Dino 300 Clusters</option>
-                  <option value="http://localhost:5000/dino_350">Dino 350 Clusters</option>
-                  <option value="http://localhost:5000/dino_400">Dino 400 Clusters</option>
-                  <option value="http://localhost:5000/dino_450">Dino 450 Clusters</option>
-                  <option value="http://localhost:5000/scan_200">Scan 200 Clusters</option>
+                  <option value="/dino_50">[KMeans] Dino 50 Clusters</option>
+                  <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
+                  <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
+                  <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                  <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
+                  <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
+                  <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
+                  <option value="/dino_450">[KMeans] Dino 450 Clusters</option>
+                  <option value="/dino_500">[KMeans] Dino 500 Clusters</option>
+                  <option value="/scan_200">[KMeans] Scan 200 Clusters</option>
+                  <option value="/vgg_200">[KMeans] VGG 200 Clusters</option>
+                  <option value="/kmplus_dino_50">[KMeans++] Dino 50 Clusters</option>
+                  <option value="/kmplus_dino_100">[KMeans++] Dino 100 Clusters</option>
+                  <option value="/kmplus_dino_150">[KMeans++] Dino 150 Clusters</option>
+                  <option value="/kmplus_dino_200">[KMeans++] Dino 200 Clusters</option>
+                  <option value="/kmplus_dino_250">[KMeans++] Dino 250 Clusters</option>
+                  <option value="/kmplus_dino_300">[KMeans++] Dino 300 Clusters</option>
+                  <option value="/kmplus_dino_350">[KMeans++] Dino 350 Clusters</option>
+                  <option value="/kmplus_dino_400">[KMeans++] Dino 400 Clusters</option>
+                  <option value="/kmplus_dino_450">[KMeans++] Dino 450 Clusters</option>
+                  <option value="/kmplus_dino_500">[KMeans++] Dino 500 Clusters</option>
+                  <option value="/agglo_dino_11">[Agglo] Dino 1.1 Distance</option>
+                  <option value="/agglo_dino_15">[Agglo] Dino 1.5 Distance</option>
+                  <option value="/agglo_dino_18">[Agglo] Dino 1.8 Distance</option>
+                  <option value="/agglo_dino_25">[Agglo] Dino 2.5 Distance</option>
+                  <option value="/agglo_dino_30">[Agglo] Dino 3.0 Distance</option>
+                  <option value="/agglo_dino_ed12">[Agglo] Dino 1.2 Euclidean Distance</option>
+                  <option value="/agglo_dino_ed15">[Agglo] Dino 1.5 Euclidean Distance</option>
+                  <option value="/agglo_dino_ed20">[Agglo] Dino 2.0 Euclidean Distance</option>
+                  <option value="/dbscan_dino_eps8_m2">[DBSCAN] Dino EPS 8 Minimum Sample 2</option>
+                  <option value="/dbscan_dino_eps8_m3">[DBSCAN] Dino EPS 8 Minimum Sample 3</option>
+                  <option value="/dbscan_dino_eps9_m2">[DBSCAN] Dino EPS 9 Minimum Sample 2</option>
+                  <option value="/optics_dino_m3">[Optics] Dino Optics Minimum Sample 3</option>
+                  <option value="/optics_dino_m4">[Optics] Dino Optics Minimum Sample 4</option>
+                  <option value="/optics_dino_m5">[Optics] Dino Optics Minimum Sample 5</option>
               </select>
               <input type=button style="font-size:20px;" value="Go" onclick="goToNewPage()" />
             </form>
@@ -145,10 +174,10 @@
         </div>    
     </div>
 
-    <style>
+  <style>
     div.container {
       display: grid;
-      grid-template-columns: 250px 100px auto;
+      grid-template-columns: 400px 100px auto;
       grid-template-rows: auto;
       }
       
@@ -167,8 +196,8 @@
       }
 
     div.right {
-      grid-column-start: 4;
-      grid-column-end: 8;
+      grid-column-start: 6;
+      grid-column-end: 9;
       grid-row-start: 1;
       grid-row-end: 5;
       }
@@ -193,7 +222,7 @@
     </style>
 
     <div class= "header">
-    <h1 style="text-align:center">DIstillation with NO labels (DINO) -- 400 Clusters</h1></div>
+    <h1 style="text-align:center">[KMeans] DIstillation with NO labels (DINO) -- 400 Clusters</h1></div>
 
     <table style="width:100%">
       <tr>
@@ -223,7 +252,7 @@
     <div id="dino_400">
       {% for key in dino_400 %}
         <h2 style="text-align:left" id="{{ key }}">{{ key }}
-          <span style="float:right;"><a href="#Title">Return to Top</a>
+          <span style="float:right;"><a href="#content">Return to Top</a>
           </span></h2>
         {% for value in dino_400[key] %}
           {% for url in links %}

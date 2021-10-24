@@ -1,6 +1,7 @@
 <html>
+  <!--<link rel="shortcut icon" href="data:" />-->
    <body>
-     <form action="http://localhost:5000/" method="POST">
+     <form action="/" method="POST">
         <header>
           <div id>
             <img src="static/logo.jpeg" class ="center"/>
@@ -13,13 +14,42 @@
             <form>
               <select name="list" id="list" accesskey="target" style="font-size:25px;">
                   <option value='none' selected>Choose a cluster</option>
-                  <option value="http://localhost:5000/dino_200">Dino 200 Clusters</option>
-                  <option value="http://localhost:5000/dino_250">Dino 250 Clusters</option>
-                  <option value="http://localhost:5000/dino_300">Dino 300 Clusters</option>
-                  <option value="http://localhost:5000/dino_350">Dino 350 Clusters</option>
-                  <option value="http://localhost:5000/dino_400">Dino 400 Clusters</option>
-                  <option value="http://localhost:5000/dino_450">Dino 450 Clusters</option>
-                  <option value="http://localhost:5000/scan_200">Scan 200 Clusters</option>
+                  <option value="/dino_50">[KMeans] Dino 50 Clusters</option>
+                  <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
+                  <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
+                  <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                  <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
+                  <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
+                  <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
+                  <option value="/dino_400">[KMeans] Dino 400 Clusters</option>
+                  <option value="/dino_450">[KMeans] Dino 450 Clusters</option>
+                  <option value="/dino_500">[KMeans] Dino 500 Clusters</option>
+                  <option value="/scan_200">[KMeans] Scan 200 Clusters</option>
+                  <option value="/vgg_200">[KMeans] VGG 200 Clusters</option>
+                  <option value="/kmplus_dino_50">[KMeans++] Dino 50 Clusters</option>
+                  <option value="/kmplus_dino_100">[KMeans++] Dino 100 Clusters</option>
+                  <option value="/kmplus_dino_150">[KMeans++] Dino 150 Clusters</option>
+                  <option value="/kmplus_dino_200">[KMeans++] Dino 200 Clusters</option>
+                  <option value="/kmplus_dino_250">[KMeans++] Dino 250 Clusters</option>
+                  <option value="/kmplus_dino_300">[KMeans++] Dino 300 Clusters</option>
+                  <option value="/kmplus_dino_350">[KMeans++] Dino 350 Clusters</option>
+                  <option value="/kmplus_dino_400">[KMeans++] Dino 400 Clusters</option>
+                  <option value="/kmplus_dino_450">[KMeans++] Dino 450 Clusters</option>
+                  <option value="/kmplus_dino_500">[KMeans++] Dino 500 Clusters</option>
+                  <option value="/agglo_dino_11">[Agglo] Dino 1.1 Distance</option>
+                  <option value="/agglo_dino_15">[Agglo] Dino 1.5 Distance</option>
+                  <option value="/agglo_dino_18">[Agglo] Dino 1.8 Distance</option>
+                  <option value="/agglo_dino_25">[Agglo] Dino 2.5 Distance</option>
+                  <option value="/agglo_dino_30">[Agglo] Dino 3.0 Distance</option>
+                  <option value="/agglo_dino_ed12">[Agglo] Dino 1.2 Euclidean Distance</option>
+                  <option value="/agglo_dino_ed15">[Agglo] Dino 1.5 Euclidean Distance</option>
+                  <option value="/agglo_dino_ed20">[Agglo] Dino 2.0 Euclidean Distance</option>
+                  <option value="/dbscan_dino_eps8_m2">[DBSCAN] Dino EPS 8 Minimum Sample 2</option>
+                  <option value="/dbscan_dino_eps8_m3">[DBSCAN] Dino EPS 8 Minimum Sample 3</option>
+                  <option value="/dbscan_dino_eps9_m2">[DBSCAN] Dino EPS 9 Minimum Sample 2</option>
+                  <option value="/optics_dino_m3">[Optics] Dino Optics Minimum Sample 3</option>
+                  <option value="/optics_dino_m4">[Optics] Dino Optics Minimum Sample 4</option>
+                  <option value="/optics_dino_m5">[Optics] Dino Optics Minimum Sample 5</option>
               </select>
               <input type=button style="font-size:25px;" value="Go" onclick="goToNewPage()" />
             </form>
