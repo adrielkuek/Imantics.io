@@ -2,15 +2,14 @@
 from keras.models import Model
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics.cluster import normalized_mutual_info_score,rand_score, adjusted_rand_score
 
 # for everything else
-import os, pickle, pprint
+import os, pickle, pprint, sys
 import numpy as np
 import pandas as pd
 import statistics
-
-    ################ PCA, KMeans, KNN ##################
-    ##knn_neighbors = 20
+from pathlib import Path
 
 def rename_clusters(data_groups,label):
     data_groupings = {}
