@@ -1,0 +1,80 @@
+<html>
+
+<body>
+  <form method="POST">
+    <header>
+      <div class="container">
+        <h1 class="logo">Group 7 App</h1>
+      </div>
+    </header>
+
+    <h2>Choose one of the following options:</h2>
+
+    <input onClick="myFunction1()" type="radio" id="textin" name="by_text" value="by_text" checked>
+    <label for="textin">By Text</label><br>
+    <input onClick="myFunction2()" type="radio" id="imagein" name="by_text" value="by_imgae">
+    <label for="imagein">Image</label><br>
+
+
+    <h3>
+      <div id="txtinput">
+        <label for="title">Text Input: </label>
+        <input type="text" , id=title, name="text" size="33">
+        <input type="submit" , value="Text Query">
+      </div>
+
+    </h3>
+
+    <!-- <input type="file" accept="image/*" name="image" id="file">
+    <input type="submit" , value="Image Query">
+    <img id="output" width="200" / />
+  </form> -->
+    <h3>
+      <form action="http://192.168.2.244:5000//uploader" method="POST" enctype="multipart/form-data">
+        <div id="image_input">
+          <label for="title">Image Input: </label>
+          <input type="file" name="file" />
+          <input type="submit" />
+        </div>
+      </form>
+    </h3>
+    <!-- <button onclick="myFunction()">Click me</button> -->
+    <script>
+      var y = document.getElementById("image_input");
+      y.style.display = "none"
+
+      function myFunction1() {
+        //do something here
+        var x = document.getElementById("txtinput");
+        var y = document.getElementById("image_input");
+        // if (x.style.display === "none") {
+        //   x.style.display = "block";
+        // } else {
+        //   x.style.display = "none";
+        // }
+        x.style.display = "block";
+        y.style.display = "none"
+      }
+      function myFunction2() {
+        //do something here
+        var x = document.getElementById("txtinput");
+        var y = document.getElementById("image_input");
+        // if (x.style.display === "none") {
+        //   x.style.display = "block";
+        // } else {
+        //   x.style.display = "none";
+        // }
+        x.style.display = "none";
+        y.style.display = "block"
+      }
+      var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+    </script>
+
+    <!-- <img id='bezos' src="{{ user_image }}" width=300, height=300 /> -->
+</body>
+
+</html>
+

@@ -1,0 +1,273 @@
+<html>
+  <!--<link rel="shortcut icon" href="data:" />-->
+   <body>
+     <form action="/agglo_dino_ed12" method="POST">
+        <header>
+          <!--<div class="container">
+          <h1 class="logo" id="Title">Imantics.io</h1>
+          </div> -->
+          <div id="content">
+            <img src="static/logo.jpeg" class ="ribbon"/>
+          </div>
+        </header>
+
+        <style>
+          #content {
+              position: relative;
+          }
+          #content img {
+              position: left;
+              top: 0px;
+              right: 0px;
+              height: 140px;
+              width: 220px;
+          }
+        </style>
+      </form>
+
+        <div class="container">
+          <div class="middle">
+            <h2>Choose one of the following options:</h2>
+
+            <!-- Radio Buttons -->
+            <div>
+              <input onClick="myFunc1()" type="radio" id="textin" name="text_image" value="text_image" checked>
+              <label for="textin" style="font-size:20px;">Text</label><br>
+              <input onClick="myFunc2()" type="radio" id="imagein" name="text_image" value="by_image">
+              <label for="imagein" style="font-size:20px;">Image</label><br>
+            </div>
+
+            <!-- Text Query Fields-->
+            <h3>
+              <div id="txtinput">
+                <form action="/text" method="POST">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                  <option value='none' selected>Choose a cluster size</option>
+                  {% for number in listofN %}                
+                    <option value="{{ number }}"> {{ number }}</option>
+                  {% endfor %}
+                </select><p>
+                <label for="title">Text Input: </label>
+                <input type="text", id=title, name="text" size="33">
+                <input type="submit">
+                <p style="font-style:italic"><small>(Image Retrieval Using CLIP)</small></p>
+                </form>
+              </div>
+            </h3>
+
+          <!-- Image Query action-->
+            <h3>
+              <div id="image_input">
+                <form action="/image" method="POST" enctype="multipart/form-data">
+                <h3><u>Please select the number of images to return.</u></h3>
+                <select name="clustersize" id="clustersize" accesskey="target" style="font-size:15px;">
+                  <option value='none' selected>Choose a cluster size</option>
+                  {% for number in listofN %}                
+                    <option value="{{ number }}"> {{ number }}</option>
+                  {% endfor %}
+                </select><p>
+                  <label for="title">Image Input: </label>
+                  <input type = "file" name = "File" />
+                  <input type = "submit" value="Submit"/>
+                  <p style="font-style:italic"><small>(Image Retrieval Using DINO)</small></p>
+                </form>
+              </div>
+            </h3>
+          </div>
+
+          <!-- JS to hide fields -->
+        <script>
+          var y = document.getElementById("image_input");
+          y.style.display = "none"
+
+          function myFunc1() {
+            var x = document.getElementById("txtinput");
+            var y = document.getElementById("image_input");
+            x.style.display = "block";
+            y.style.display = "none"
+          }
+
+          function myFunc2() {
+            var x = document.getElementById("txtinput");
+            var y = document.getElementById("image_input");
+            x.style.display = "none";
+            y.style.display = "block"
+          }
+          
+        function myAnchor(value){
+          var top = document.getElementById(value).offsetTop;
+          window.scrollTo(0, top);
+          //document.getElementById(value).scrollIntoView();
+        }
+
+        </script>
+        
+        <!-- Drop down for clusters-->
+        <div class="left">
+          <h2>Choose your Model below</h2>
+          <h3>
+            <form>
+              <select name="list" id="list" accesskey="target" style="font-size:20px;">
+                <option value='none' selected>Choose a cluster</option>
+                <option value="/dino_50">[KMeans] Dino 50 Clusters</option>
+                <option value="/dino_100">[KMeans] Dino 100 Clusters</option>
+                <option value="/dino_150">[KMeans] Dino 150 Clusters</option>
+                <option value="/dino_200">[KMeans] Dino 200 Clusters</option>
+                <option value="/dino_250">[KMeans] Dino 250 Clusters</option>
+                <option value="/dino_300">[KMeans] Dino 300 Clusters</option>
+                <option value="/dino_350">[KMeans] Dino 350 Clusters</option>
+                <option value="/dino_400">[KMeans] Dino 400 Clusters</option>
+                <option value="/dino_450">[KMeans] Dino 450 Clusters</option>
+                <option value="/dino_500">[KMeans] Dino 500 Clusters</option>
+                <option value="/scan_200">[KMeans] Scan 200 Clusters</option>
+                <option value="/vgg_200">[KMeans] VGG 200 Clusters</option>
+                <option value="/kmplus_dino_50">[KMeans++] Dino 50 Clusters</option>
+                <option value="/kmplus_dino_100">[KMeans++] Dino 100 Clusters</option>
+                <option value="/kmplus_dino_150">[KMeans++] Dino 150 Clusters</option>
+                <option value="/kmplus_dino_200">[KMeans++] Dino 200 Clusters</option>
+                <option value="/kmplus_dino_250">[KMeans++] Dino 250 Clusters</option>
+                <option value="/kmplus_dino_300">[KMeans++] Dino 300 Clusters</option>
+                <option value="/kmplus_dino_350">[KMeans++] Dino 350 Clusters</option>
+                <option value="/kmplus_dino_400">[KMeans++] Dino 400 Clusters</option>
+                <option value="/kmplus_dino_450">[KMeans++] Dino 450 Clusters</option>
+                <option value="/kmplus_dino_500">[KMeans++] Dino 500 Clusters</option>
+                <option value="/agglo_dino_ed15">[Agglo] Dino 1.5 Euclidean Distance</option>
+                <option value="/agglo_dino_ed20">[Agglo] Dino 2.0 Euclidean Distance</option>
+                <option value="/dbscan_dino_eps8_m2">[DBSCAN] Dino EPS 8 Minimum Sample 2</option>
+                <option value="/dbscan_dino_eps8_m3">[DBSCAN] Dino EPS 8 Minimum Sample 3</option>
+                <option value="/dbscan_dino_eps9_m2">[DBSCAN] Dino EPS 9 Minimum Sample 2</option>
+                <option value="/optics_dino_m3">[Optics] Dino Optics Minimum Sample 3</option>
+                <option value="/optics_dino_m4">[Optics] Dino Optics Minimum Sample 4</option>
+                <option value="/optics_dino_m5">[Optics] Dino Optics Minimum Sample 5</option>
+              </select>
+              <input type=button style="font-size:20px;" value="Go" onclick="goToNewPage()" />
+            </form>
+          </h3>
+        </div>
+
+        <script type="text/javascript">
+          function goToNewPage()
+          {
+              var url = document.getElementById('list').value;
+              if(url != 'none') {
+                  window.location = url;
+              }
+          }
+        </script>
+
+        <div class="right">
+          <h2>Choose the Cluster to view</h2>
+          <form>
+            <select name="list" id="list" style="font-size:20px;" accesskey="target" onchange="myAnchor(this.value)">
+                <option value='none' selected>Choose a cluster</option>
+                {% for key in agglo_dino_ed12c %}
+                <option value= "{{ key }}"> {{ key }}</option>
+                {% endfor %}
+            </select>
+          </form>  
+        </div>    
+    </div>
+
+    <style>
+    div.container {
+      display: grid;
+      grid-template-columns: 400px 100px auto;
+      grid-template-rows: auto;
+      }
+      
+    div.left {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      }
+      
+    div.middle {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      }
+
+    div.right {
+      grid-column-start: 6;
+      grid-column-end: 9;
+      grid-row-start: 1;
+      grid-row-end: 5;
+      }
+
+    div.header {
+      background-color:mediumorchid;
+      height: 50px;
+    }
+
+    table, th {
+      padding: 5px;
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    td{
+      padding: 5px;
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+      width: 5%;
+    }
+
+    th {
+      width: 80%;
+      font-size: 25px;
+
+    }
+
+    </style>
+    <div class= "header">
+      <h1 style="text-align:center">[Agglo] DIstillation with NO labels (DINO) -- 1.2 Euclidean Distance</h1></div>
+
+    <table style="width:100%">
+      <tr>
+        <th colspan="5">Cluster Statistics</th>
+        <th colspan="2">Evaluation with Imagenet Dataset</th>
+      </tr>
+      <tr>
+        <td>No. of clusters with images</td>
+        <td>No. of clusters with 0 images</td>
+        <td>Maximum images in cluster</td>
+        <td>Minimum images in cluster</td>
+        <td>Mean images in cluster</td>
+        <td>Normalized Mutual Information (NMI)</td>
+        <td>Adjusted Rand Index (ARI)</td>
+      </tr>
+      <tr>
+        <td>{{ imgcount_nonzero }}</td>
+        <td>{{ imgcount_zero }}</td>
+        <td>{{ max_value }}</td>
+        <td>{{ min_value }}</td>
+        <td>{{ mean_value }}</td>
+        <td>{{ NMI }} </td>
+        <td>{{ ARand }} </td>
+      </tr>
+    </table>
+
+    <hr style="height:4px;border:none;color:#333;background-color:#333;">
+    <div id="agglo_dino_ed12c">
+      {% for key in agglo_dino_ed12c %}
+        <h2 style="text-align:left" id="{{ key }}">{{ key }}
+          <span style="float:right;"><a href="#content">Return to Top</a>
+          </span></h2>
+        {% for value in agglo_dino_ed12c[key] %}
+          {% for url in links %}
+            {% if value in url %} 
+              <img src="{{ url }}" width=200, height=200/>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+        <hr style="height:4px;border:none;color:#333;background-color:#333;">
+      {% endfor %}
+    </div>
+
+   </body>
+</html>
