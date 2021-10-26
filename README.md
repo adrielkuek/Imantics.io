@@ -20,9 +20,9 @@ Note: dataset is not uploaded due to massive size
 
 ### Missing Documents (File size too big to be uploaded)
 
-1) models folder
-    => Contains dino_deitsmall8_pretrain.pth & ViT-B-32.pt
-2) static/images folder
+1) models folder <br />
+    => Contains dino_deitsmall8_pretrain.pth & ViT-B-32.pt 
+2) static/images folder <br />
     => Contains 2,000 images curated from mobile phone gallery
-3) static/images/upload folder
+3) static/images/upload folder <br />
     => Store image that is uploaded by user  
