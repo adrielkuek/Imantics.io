@@ -17,3 +17,12 @@ Lastly, enjoy the tour!
 
 Consists of 2,000 images curated from actual users' mobile phone gallery. <br />
 Note: dataset is not uploaded due to massive size
+
+### Missing Documents (File size too big to be uploaded)
+
+1) models folder
+    => Contains dino_deitsmall8_pretrain.pth & ViT-B-32.pt
+2) static/images folder
+    => Contains 2,000 images curated from mobile phone gallery
+3) static/images/upload folder
+    => Store image that is uploaded by user  
