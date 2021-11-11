@@ -1,0 +1,3 @@
+Missing
+1) Dino_deitsmall8_pretrain.pth
+2) ViT-B-32.pt
