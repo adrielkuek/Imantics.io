@@ -13,7 +13,7 @@ class CustomDataSet2(Dataset):
 
     def __getitem__(self, idx):
         img_loc = self.total_imgs[idx]
-        image = Image.open(img_loc).convert("RGB")
+        image = Image.open(img_loc).convert('RGB')
         tensor_image = self.transform(image)
         return tensor_image
     
