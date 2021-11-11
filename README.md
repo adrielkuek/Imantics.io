@@ -24,7 +24,5 @@ Note: dataset is not uploaded due to massive size
     => Contains dino_deitsmall8_pretrain.pth & ViT-B-32.pt 
 2) static/images folder <br />
     => Contains 2,000 images curated from mobile phone gallery
-3) static/images/upload folder <br />
-    => Store image that is uploaded by user  
-4) virtual folder <br />
+3) virtual folder <br />
     => Virtual Environment with libraries and packages not uploaded
