@@ -14,6 +14,7 @@ from pathlib import Path
 def rename_clusters(data_groups,label):
     data_groupings = {}
     data_filenames = {}
+
     for key, value in data_groups.items():
         groupname = int(key.replace(label,""))
         data_groupings[groupname] = value
@@ -27,7 +28,7 @@ def rename_clusters(data_groups,label):
             data_filenames["Cluster_0" + str(key)] = data_dict[key]
         else:
             data_filenames["Cluster_" + str(key)] = data_dict[key]
-
+            
     return data_filenames
 
 

@@ -22,16 +22,20 @@ def eval_table():
 
     ######################## Initialization ####################################
     general_path = os.getcwd()
-    imagenet_path = general_path + "\\util"
-    DTclasslabels = pd.read_excel(imagenet_path + "\\LOC_val_solution.xlsx", sheet_name="Sheet1")
+    # imagenet_path = general_path + "\\util"
+    imagenet_path = general_path + "/util"
+    # DTclasslabels = pd.read_excel(imagenet_path + "\\LOC_val_solution.xlsx", sheet_name="Sheet1")
+    DTclasslabels = pd.read_excel(imagenet_path + "/LOC_val_solution.xlsx", sheet_name="Sheet1")
     filenames = DTclasslabels["ImageId"].to_list()
-    pkl_files = os.listdir(general_path + "\\evaluation")
+    # pkl_files = os.listdir(general_path + "\\evaluation")
+    pkl_files = os.listdir(general_path + "/evaluation")
     clustermodel_labels = DTclasslabels.drop(["Label","LabelNumber","Contents"], axis=1)
 
     ######################## Cluster Models ####################################
     df = []
     for file in pkl_files:
-        with open(general_path +"\\evaluation\\"+ file, 'rb') as f:
+        # with open(general_path +"\\evaluation\\"+ file, 'rb') as f:
+        with open(general_path +"/evaluation/"+ file, 'rb') as f:
             model_file = pickle.load(f)
             df.append({"Name": Path(file).stem, "Cluster size": len(model_file)}) 
             label = extract_labels(model_file, Path(file).stem)
@@ -40,7 +44,8 @@ def eval_table():
     df.append(df2)
     df = pd.DataFrame(df)
 
-    modelfile = imagenet_path + '\\finalized_model.sav'
+    # modelfile = imagenet_path + '\\finalized_model.sav'
+    modelfile = imagenet_path + '/finalized_model.sav'
     KMeansModel = pickle.load(open(modelfile, 'rb'))
     pred_list = pd.DataFrame(zip(filenames,KMeansModel.labels_), columns= ["ImageId","label"])
     clustermodel_labels["VGG16"] = pred_list["label"].tolist()

@@ -7,6 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from clipRetrieval import *
 from DINOretrieval import *
 from model_evaluation import *
+import natsort
 
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = os.path.join("static", "images")
@@ -46,10 +47,13 @@ def home_form():
 @app.route("/text", methods=['POST'])
 def text():
     imageResults_list = []
-    filelist = listofimages()
-    
+    filelist = listofimages()    
     querytext = request.form["text"]
-    NNeighbor = int(request.form["clustersize"])
+
+    try:
+        NNeighbor = int(request.form["clustersize"])
+    except:
+        NNeighbor = 20
     
     imageResults_list = clip.kNN_retrieval(NNeighbor, querytext, is_text=True)
     return render_template('text.html', imageResults_list=imageResults_list, links=filelist, querytext=querytext)
@@ -65,13 +69,18 @@ def upload():
             os.remove(image)
 
         f = request.files['File']
-        filepath = os.path.join("static", "images","upload",secure_filename(f.filename))
+        print(f)
+        filepath = os.path.join(app.config["UPLOAD_FOLDER"],"upload",secure_filename(f.filename))
         f.save(filepath)
 
-    NNeighbor = int(request.form["clustersize"])
+    try:
+        NNeighbor = int(request.form["clustersize"])
+    except:
+        NNeighbor = 20
+        
     imageResults_list = dino.kNN_retrieval(filepath, NNeighbor)
         
-    return render_template('image.html',imageResults_list=imageResults_list, links=filelist, filepath=filepath)      
+    return render_template('image.html',imageResults_list=imageResults_list, filepath=filepath, links=filelist)      
 
 @app.route('/dino_50')
 def dino_50():
