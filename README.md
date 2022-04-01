@@ -2,7 +2,7 @@
 
 # Overview
 Imantics.io is the idea of building a web-based image archival and search framework to simulate an intelligent mobile phone image gallery.</br>The core concept behind Imantics.io is to provide users with an
-intelligent image pattern discovery framework to derive semantic understanding for archival and organisation. The framework is designed as a discovery pipeline beginning with an image dataset input, followed by image feature extraction and feature selection blocks to obtain signal representations for downstream tasks of image clustering and image retrieval respectively. The corresponding image outputs enable the system to discover novel semantics or genres of images through clustering, as well as performing zero-shot classification through retrieval. The discovery pipeline for Imantics.io is illustrated below.
+intelligent image pattern discovery framework to derive semantic understanding for archival and organisation. The framework is designed as a discovery pipeline beginning with an image dataset input, followed by image feature extraction and feature selection blocks to obtain signal representations for downstream tasks of image clustering and image retrieval respectively.</br>The corresponding image outputs enable the system to discover novel semantics or genres of images through clustering, as well as performing zero-shot classification through retrieval. The discovery pipeline for Imantics.io is illustrated below.
 
 ![Pipeline](https://github.com/adrielkuek/Imantics.io/blob/main/figures/imantics_io_pipeline.png)
 
@@ -25,9 +25,22 @@ Note: dataset is not uploaded due to massive size
 
 ### Missing Documents (File size too big to be uploaded)
 
-1) models folder <br />
+1) models folder </br>
     => Contains dino_deitsmall8_pretrain.pth & ViT-B-32.pt 
-2) static/images folder <br />
+2) static/images folder </br>
     => Contains 2,000 images curated from mobile phone gallery
-3) virtual folder <br />
+3) virtual folder </br>
     => Virtual Environment with libraries and packages not uploaded
+
+## Cite
+
+If you find this project useful or interesting, please consider cite:
+
+```latex
+@misc{NUS-ISS_PRS2021,
+    title={Imantics.io - Image archival and retrieval based on pattern recognition through self-supervised learning},
+    author={Adriel, Hao Zi, Jenn Ning},
+    url={https://github.com/adrielkuek/Imantics.io},
+    year={2021}
+}
+```
