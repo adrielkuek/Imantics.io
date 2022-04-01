@@ -1,10 +1,10 @@
-![Imantics.io](https://github.com/adrielkuek/Imantics.io/blob/main/Imantics_io_logo.jpg)
+![Imantics.io](https://github.com/adrielkuek/Imantics.io/blob/main/figures/Imantics_io_logo.jpg)
 
 # Overview
 Imantics.io is the idea of building a web-based image archival and search framework to simulate an intelligent mobile phone image gallery.</br>The core concept behind Imantics.io is to provide users with an
 intelligent image pattern discovery framework to derive semantic understanding for archival and organisation. The framework is designed as a discovery pipeline beginning with an image dataset input, followed by image feature extraction and feature selection blocks to obtain signal representations for downstream tasks of image clustering and image retrieval respectively. The corresponding image outputs enable the system to discover novel semantics or genres of images through clustering, as well as performing zero-shot classification through retrieval. The discovery pipeline for Imantics.io is illustrated below.
 
-![Pipeline](https://github.com/adrielkuek/Imantics.io/blob/main/Imantics_io_logo.jpg)
+![Pipeline](https://github.com/adrielkuek/Imantics.io/blob/main/figures/imantics_io_pipeline.png)
 
 # Running Model
 Go to __Command Prompt__.
